@@ -20,6 +20,6 @@ async def set_lang_callback_query_handler(callback_query: CallbackQuery, user: U
     await show_start_message(user, session)
 
 
-@dp.message(Command("/lang"))
+@dp.message(Command("lang"))
 async def set_lang(message: types.Message, user: User, session: AsyncSession):
     await show_initial_set_language_message(user, session)
