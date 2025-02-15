@@ -1,0 +1,85 @@
+{
+  "start_message": {
+    "en": "Welcome to *wikibot*\\!\n\n*To search for an article\\, just send text message\\.* Also, you can navigate through main articles below\\:",
+    "ru": "Добро пожаловать в wikibot\\!\n\n*Чтобы произвести поиск по статьям\\, просто отправьте текстовое сообщение\\.* Также, вы можете продолжить навигацию по главным статьям ниже\\:"
+  },
+  "initial_choose_language_message": {
+    "en": "Hello\\! Choose your language\\:"
+  },
+  "list_articles_button": {
+    "en": "\uD83D\uDCC2 List articles",
+    "ru": "\uD83D\uDCC2 Список статей"
+  },
+  "create_article_button": {
+    "en": "➕Create article",
+    "ru": "➕Создать статью"
+  },
+  "error_deleted_article_message": {
+    "en": "This article has been deleted",
+    "ru": "Эта статья была удалена"
+  },
+  "change_article_status_button": {
+    "en": "Update status",
+    "ru": "Изменить статус"
+  },
+  "edit_article_content_button": {
+    "en": "Edit Article",
+    "ru": "Изменить статью"
+  },
+  "error_no_articles_found": {
+    "en": "No articles found",
+    "ru": "Не найдено статей"
+  },
+  "search_articles_message": {
+    "en": "Here is a list of articles\\:",
+    "ru": "Вот список статей\\:"
+  },
+  "edit_draft_title_button": {
+    "en": "Edit title",
+    "ru": "Поменять оглавление"
+  },
+  "edit_draft_text_button": {
+    "en": "Edit text",
+    "ru": "Поменять текст"
+  },
+  "edit_draft_media_button": {
+    "en": "Edit media",
+    "ru": "Поменять медиа"
+  },
+  "submit_draft_button": {
+    "en": "Submit",
+    "ru": "Опубликовать"
+  },
+  "save_draft_button": {
+    "en": "Save",
+    "ru": "Сохранить"
+  },
+  "update_draft_title_message": {
+    "en": "Send title for the article\\.\\.\\.",
+    "ru": "Отправьте оглавление для статьи\\.\\.\\."
+  },
+  "update_draft_text_message": {
+    "en": "Send text for the article\\.\\.\\.",
+    "ru": "Отправьте текст для статьи\\.\\.\\."
+  },
+  "update_draft_media_message": {
+    "en": "Send media for the article\\.\\.\\.",
+    "ru": "Отправьте медиа для статьи\\.\\.\\."
+  },
+  "error_draft_no_primary_language_content": {
+    "en": "❌ Title or text for primary language \\({language_emoji} {language_code}\\) is not submitted",
+    "ru": "❌ Оглавление или текст для основного языка \\({language_emoji} {language_code}\\) не указано"
+  },
+  "error_draft_already_submitted": {
+    "en": "This draft is already submitted",
+    "ru": "Этот черновик уже опубликован"
+  },
+  "list_articles_message": {
+    "en": "Here is all articles\\:",
+    "ru": "Список всех статей\\:"
+  },
+  "share_article_text": {
+    "en": "\uD83D\uDD17\\(share\\)",
+    "ru": "\uD83D\uDD17\\(поделиться\\)"
+  }
+}
