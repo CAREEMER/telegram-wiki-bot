@@ -17,10 +17,8 @@ async def register_user(
 ):
     async with async_session() as session:
         data["user"] = await get_or_create_user(update.event.from_user, session)
-
-    language = await get_language(data["user"].language_id, session) if data["user"].language_id else None
-
-    primary_language = await get_primary_language(session)
+        language = await get_language(data["user"].language_id, session) if data["user"].language_id else None
+        primary_language = await get_primary_language(session)
 
     token = ctx_language_var.set(language.code if language else None)
     primary_token = primary_language_var.set(primary_language.code)

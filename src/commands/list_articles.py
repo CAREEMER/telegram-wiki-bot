@@ -15,7 +15,7 @@ from services.utils import sanitize_text as st
 @dp.callback_query(lambda e: e.data.startswith("list_articles:"))
 async def handle_list_articles(callback_query: CallbackQuery, user: User, session: AsyncSession):
     await callback_query.answer()
-    page_size = 1
+    page_size = 10
 
     _, page, new_message = callback_query.data.split(":")
     page = int(page)

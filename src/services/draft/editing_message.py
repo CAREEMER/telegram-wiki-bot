@@ -90,6 +90,7 @@ class DraftEditingMessage:
                 chat_id=self.redactor.telegram_id,
                 text=message,
                 reply_markup=reply_markup,
+                disable_web_page_preview=True,
             )
 
         if media.content_type == types.ContentType.ANIMATION:

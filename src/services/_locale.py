@@ -46,11 +46,11 @@ class Texts:
     locale_json: dict | None = None
 
     @classmethod
-    def get(cls, _text: Text) -> str:
+    def get(cls, _text: Text, language_code: str | None = None) -> str:
         if not cls.locale_json:
             cls.locale_json = load_locale()
 
-        ctx_language_code = ctx_language_var.get()
+        ctx_language_code = language_code or ctx_language_var.get()
         primary_language_code = primary_language_var.get()
 
         return cls.locale_json.get(_text).get(

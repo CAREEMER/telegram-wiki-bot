@@ -11,10 +11,6 @@ from services.language import get_primary_language
 from services.utils import get_bot_link
 
 
-async def bot_link():
-    pass
-
-
 async def show_article_message(article_id: int, user: User, session: AsyncSession):
     article = await get_article(article_id, session)
 
@@ -39,15 +35,21 @@ async def show_article_message(article_id: int, user: User, session: AsyncSessio
             [
                 types.InlineKeyboardButton(
                     text=Texts.get(Text.CHANGE_ARTICLE_STATUS_BUTTON), callback_data=f"edit_article_status:{article_id}"
-                ),
+                )
+            ]
+        )
+        reply_markup.inline_keyboard.append(
+            [
                 types.InlineKeyboardButton(
                     text=Texts.get(Text.EDIT_ARTICLE_CONTENT_BUTTON), callback_data=f"edit_article:{article_id}"
-                ),
+                )
             ]
         )
 
     if not media:
-        return await bot.send_message(chat_id=user.telegram_id, text=text, reply_markup=reply_markup)
+        return await bot.send_message(
+            chat_id=user.telegram_id, text=text, reply_markup=reply_markup, disable_web_page_preview=True
+        )
 
     if media.content_type == types.ContentType.PHOTO:
         await bot.send_photo(
