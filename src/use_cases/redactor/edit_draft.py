@@ -2,6 +2,8 @@ from aiogram.fsm.context import FSMContext
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.bot import bot
+from core.settings import settings
+from exceptions.draft_edit import DraftTooLongTextException, DraftTooLongTitleException
 from models import User
 from services._locale import Text, Texts
 from services.draft.content import (
@@ -106,3 +108,15 @@ async def edit_draft_content(
         language=language,
         session=session,
     ).run()
+
+
+async def validate_title_content(content: str) -> None:
+    title_content_length = len(content.replace("\n", ""))
+    if title_content_length > settings.TITLE_CONTENT_LENGTH:
+        raise DraftTooLongTitleException(length=title_content_length)
+
+
+async def validate_text_content(content: str) -> None:
+    text_content_length = len(content.replace("\n", ""))
+    if text_content_length > settings.TEXT_CONTENT_LENGTH:
+        raise DraftTooLongTextException(length=text_content_length)

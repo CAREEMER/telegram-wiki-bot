@@ -81,5 +81,13 @@
   "share_article_text": {
     "en": "\uD83D\uDD17\\(share\\)",
     "ru": "\uD83D\uDD17\\(поделиться\\)"
+  },
+  "error_too_long_draft_title": {
+    "en": "The title content is too long\\: *{content_length}*\\, maximum is *{max_content_length}* characters\\. Try again with simpler content\\:",
+    "ru": "Содержание оглавления слишком длинное\\: *{content_length}*\\, максимум *{max_content_length}* символов\\. Попробуйте снова с упрощенным содержанием\\:"
+  },
+    "error_too_long_draft_text": {
+    "en": "The text content is too long\\: *{content_length}*\\, maximum is *{max_content_length}* characters\\. Try again with simpler content\\:",
+    "ru": "Содержание текста слишком длинное\\: *{content_length}*\\, максимум *{max_content_length}* символов\\. Попробуйте снова с упрощенным содержанием\\:"
   }
 }

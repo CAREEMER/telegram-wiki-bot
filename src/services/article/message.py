@@ -55,20 +55,29 @@ async def show_article_message(article_id: int, user: User, session: AsyncSessio
         await bot.send_photo(
             chat_id=user.telegram_id,
             photo=BufferedInputFile(media.content, filename="article_image.png"),
-            caption=text,
+        )
+        await bot.send_message(
+            chat_id=user.telegram_id,
+            text=text,
             reply_markup=reply_markup,
         )
     elif media.content_type == types.ContentType.VIDEO:
         await bot.send_video(
             chat_id=user.telegram_id,
             video=BufferedInputFile(media.content, filename="article_video.mp4"),
-            caption=text,
+        )
+        await bot.send_message(
+            chat_id=user.telegram_id,
+            text=text,
             reply_markup=reply_markup,
         )
     elif media.content_type == types.ContentType.ANIMATION:
         await bot.send_animation(
             chat_id=user.telegram_id,
             animation=BufferedInputFile(media.content, filename="article_animation.gif"),
-            caption=text,
+        )
+        await bot.send_message(
+            chat_id=user.telegram_id,
+            text=text,
             reply_markup=reply_markup,
         )

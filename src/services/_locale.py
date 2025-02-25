@@ -35,6 +35,8 @@ class Text(str, enum.Enum):
     ERROR_NO_ARTICLES_FOUND = "error_no_articles_found"
     ERROR_DRAFT_NO_PRIMARY_LANGUAGE_CONTENT = "error_draft_no_primary_language_content"
     ERROR_DRAFT_ALREADY_SUBMITTED = "error_draft_already_submitted"
+    ERROR_TOO_LONG_DRAFT_TITLE = "error_too_long_draft_title"
+    ERROR_TOO_LONG_DRAFT_TEXT = "error_too_long_draft_text"
 
 
 def load_locale() -> None:

@@ -94,10 +94,13 @@ class DraftEditingMessage:
             )
 
         if media.content_type == types.ContentType.ANIMATION:
-            return await bot.send_animation(
+            await bot.send_animation(
                 chat_id=self.redactor.telegram_id,
                 animation=BufferedInputFile(media.content, filename="animation.gif"),
-                caption=message,
+            )
+            return await bot.send_message(
+                chat_id=self.redactor.telegram_id,
+                text=message,
                 reply_markup=reply_markup,
             )
 
@@ -105,7 +108,10 @@ class DraftEditingMessage:
             await bot.send_photo(
                 chat_id=self.redactor.telegram_id,
                 photo=BufferedInputFile(media.content, filename="article_image.png"),
-                caption=message,
+            )
+            return await bot.send_message(
+                chat_id=self.redactor.telegram_id,
+                text=message,
                 reply_markup=reply_markup,
             )
 
@@ -113,6 +119,9 @@ class DraftEditingMessage:
             await bot.send_video(
                 chat_id=self.redactor.telegram_id,
                 video=BufferedInputFile(media.content, filename="video.mp4"),
-                caption=message,
+            )
+            return await bot.send_message(
+                chat_id=self.redactor.telegram_id,
+                text=message,
                 reply_markup=reply_markup,
             )

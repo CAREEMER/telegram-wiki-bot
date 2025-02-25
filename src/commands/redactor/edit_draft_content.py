@@ -5,9 +5,16 @@ from aiogram.fsm.context import FSMContext
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.bot import bot, dp
+from exceptions.draft_edit import DraftTooLongTextException, DraftTooLongTitleException
 from models import User
+from services._locale import Text, Texts
 from states.draft import EditDraftContentState
-from use_cases.redactor.edit_draft import edit_draft_callback_init, edit_draft_content
+from use_cases.redactor.edit_draft import (
+    edit_draft_callback_init,
+    edit_draft_content,
+    validate_text_content,
+    validate_title_content,
+)
 
 
 @dp.callback_query(lambda e: e.data.startswith("edit_draft_content:"))
@@ -26,6 +33,19 @@ async def edit_draft_content_callback_query(
 @dp.message(EditDraftContentState.title)
 async def edit_draft_title(message: types.Message, state: FSMContext, user: User, session: AsyncSession):
     state_data = await state.get_data()
+
+    try:
+        await validate_title_content(content=message.text)
+    except DraftTooLongTitleException as e:
+        await bot.send_message(
+            chat_id=message.from_user.id,
+            text=Texts.get(Text.ERROR_TOO_LONG_DRAFT_TITLE).format(
+                content_length=e.length,
+                max_content_length=e.max_length,
+            ),
+        )
+        return
+
     await state.clear()
 
     await edit_draft_content(
@@ -41,6 +61,19 @@ async def edit_draft_title(message: types.Message, state: FSMContext, user: User
 @dp.message(EditDraftContentState.text)
 async def edit_draft_text(message: types.Message, state: FSMContext, user: User, session: AsyncSession):
     state_data = await state.get_data()
+
+    try:
+        await validate_text_content(content=message.text)
+    except DraftTooLongTextException as e:
+        await bot.send_message(
+            chat_id=message.from_user.id,
+            text=Texts.get(Text.ERROR_TOO_LONG_DRAFT_TEXT).format(
+                content_length=e.length,
+                max_content_length=e.max_length,
+            ),
+        )
+        return
+
     await state.clear()
 
     await edit_draft_content(

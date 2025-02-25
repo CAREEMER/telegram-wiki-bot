@@ -14,6 +14,9 @@ class Settings(BaseSettings):
 
     REDIS_DSN: str = "redis://localhost:6379"
 
+    TITLE_CONTENT_LENGTH: int = 100
+    TEXT_CONTENT_LENGTH: int = 3800
+
     @property
     def DATABASE_URL(self) -> str:
         return (

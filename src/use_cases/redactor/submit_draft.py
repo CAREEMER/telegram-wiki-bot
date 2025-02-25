@@ -1,7 +1,7 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.bot import bot
-from exceptions.draft import (
+from exceptions.draft_submit import (
     DraftAlreadyPublishedException,
     DraftNoPrimaryLanguageException,
 )
