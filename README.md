@@ -1,6 +1,6 @@
 # Wiki bot
 
-## Version 1.0.2
+## Version 1.0.3
 
 ## Deployment
 - see /examples folder

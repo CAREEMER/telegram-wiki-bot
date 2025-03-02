@@ -47,38 +47,27 @@ async def show_article_message(article_id: int, user: User, session: AsyncSessio
             ]
         )
 
-    if not media:
-        return await bot.send_message(
-            chat_id=user.telegram_id, text=text, reply_markup=reply_markup, disable_web_page_preview=True
-        )
-
-    if media.content_type == types.ContentType.PHOTO:
+    if media and (media.content_type == types.ContentType.PHOTO):
         await bot.send_photo(
             chat_id=user.telegram_id,
             photo=BufferedInputFile(media.content, filename="article_image.png"),
         )
-        await bot.send_message(
-            chat_id=user.telegram_id,
-            text=text,
-            reply_markup=reply_markup,
-        )
-    elif media.content_type == types.ContentType.VIDEO:
+
+    elif media and (media.content_type == types.ContentType.VIDEO):
         await bot.send_video(
             chat_id=user.telegram_id,
             video=BufferedInputFile(media.content, filename="article_video.mp4"),
         )
-        await bot.send_message(
-            chat_id=user.telegram_id,
-            text=text,
-            reply_markup=reply_markup,
-        )
-    elif media.content_type == types.ContentType.ANIMATION:
+
+    elif media and (media.content_type == types.ContentType.ANIMATION):
         await bot.send_animation(
             chat_id=user.telegram_id,
             animation=BufferedInputFile(media.content, filename="article_animation.gif"),
         )
-        await bot.send_message(
-            chat_id=user.telegram_id,
-            text=text,
-            reply_markup=reply_markup,
-        )
+
+    return await bot.send_message(
+        chat_id=user.telegram_id,
+        text=text,
+        reply_markup=reply_markup,
+        disable_web_page_preview=True,
+    )

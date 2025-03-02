@@ -85,43 +85,24 @@ class DraftEditingMessage:
         message = await self.construct_message_text(title, text, media)
         reply_markup = await self.construct_inline_keyboard()
 
-        if not media:
-            return await bot.send_message(
-                chat_id=self.redactor.telegram_id,
-                text=message,
-                reply_markup=reply_markup,
-                disable_web_page_preview=True,
-            )
-
-        if media.content_type == types.ContentType.ANIMATION:
+        if media and (media.content_type == types.ContentType.ANIMATION):
             await bot.send_animation(
                 chat_id=self.redactor.telegram_id,
                 animation=BufferedInputFile(media.content, filename="animation.gif"),
             )
-            return await bot.send_message(
-                chat_id=self.redactor.telegram_id,
-                text=message,
-                reply_markup=reply_markup,
-            )
 
-        elif media.content_type == types.ContentType.PHOTO:
+        elif media and (media.content_type == types.ContentType.PHOTO):
             await bot.send_photo(
                 chat_id=self.redactor.telegram_id,
                 photo=BufferedInputFile(media.content, filename="article_image.png"),
             )
-            return await bot.send_message(
-                chat_id=self.redactor.telegram_id,
-                text=message,
-                reply_markup=reply_markup,
-            )
 
-        elif media.content_type == types.ContentType.VIDEO:
+        elif media and (media.content_type == types.ContentType.VIDEO):
             await bot.send_video(
                 chat_id=self.redactor.telegram_id,
                 video=BufferedInputFile(media.content, filename="video.mp4"),
             )
-            return await bot.send_message(
-                chat_id=self.redactor.telegram_id,
-                text=message,
-                reply_markup=reply_markup,
-            )
+
+        return await bot.send_message(
+            chat_id=self.redactor.telegram_id, text=message, reply_markup=reply_markup, disable_web_page_preview=True
+        )

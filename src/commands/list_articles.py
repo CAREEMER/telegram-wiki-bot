@@ -77,6 +77,7 @@ async def handle_list_articles(callback_query: CallbackQuery, user: User, sessio
             chat_id=user.telegram_id,
             text=text,
             reply_markup=reply_markup,
+            disable_web_page_preview=True,
         )
 
     else:
@@ -85,4 +86,5 @@ async def handle_list_articles(callback_query: CallbackQuery, user: User, sessio
             message_id=callback_query.message.message_id,
             text=text,
             reply_markup=reply_markup,
+            disable_web_page_preview=True,
         )
