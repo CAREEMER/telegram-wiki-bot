@@ -5,6 +5,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from core.bot import bot
 from models import User
 from schemas.article import ArticleStatusEnum
+from schemas.user import RoleEnum
 from services._locale import Text, Texts
 from services.article.get import get_article
 from services.language import get_primary_language
@@ -14,7 +15,7 @@ from services.utils import get_bot_link
 async def show_article_message(article_id: int, user: User, session: AsyncSession):
     article = await get_article(article_id, session)
 
-    if user.is_default_user and article.status == ArticleStatusEnum.DELETED:
+    if (user.role == RoleEnum.DEFAULT) and article.status == ArticleStatusEnum.DELETED:
         return await bot.send_message(
             chat_id=user.telegram_id,
             text=Texts.get(Text.ERROR_DELETED_ARTICLE_MESSAGE),

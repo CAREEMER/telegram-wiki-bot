@@ -3,7 +3,7 @@ from services.cache import CacheService
 
 
 def sanitize_text(text: str):
-    escape_chars = ["_", ".", "-", "#", "(", ")", "[", "]", "!", "*", ">", "<", "`", "~", "|", "="]
+    escape_chars = ["_", ".", "-", "#", "(", ")", "[", "]", "!", "*", ">", "<", "`", "~", "|", "=", "+"]
     for char in escape_chars:
         text = text.replace(char, "\\" + char)
 
